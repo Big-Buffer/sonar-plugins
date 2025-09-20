@@ -1,0 +1,25 @@
+<p>
+    此规则检查 MyBatis Plus 的 LambdaUpdateWrapper 是否包含至少一个 eq 条件。
+    如果没有 eq 条件，可能会导致全表更新，这是非常危险的操作。
+</p>
+
+<h2>不合规代码示例</h2>
+<pre>
+LambdaUpdateWrapper&lt;User&gt; updateWrapper = Wrappers.lambdaUpdate();
+updateWrapper.set(User::getName, "newName");
+userMapper.update(null, updateWrapper); // 缺少 eq 条件
+</pre>
+
+<h2>合规代码示例</h2>
+<pre>
+LambdaUpdateWrapper&lt;User&gt; updateWrapper = Wrappers.lambdaUpdate();
+updateWrapper.eq(User::getId, 1L) // 包含 eq 条件
+             .set(User::getName, "newName");
+userMapper.update(null, updateWrapper);
+</pre>
+
+<h2>相关文档</h2>
+<ul>
+    <li><a href="https://baomidou.com/pages/10c804/">MyBatis Plus 官方文档 - 条件构造器</a></li>
+    <li><a href="https://baomidou.com/pages/49cc81/">MyBatis Plus 官方文档 - 更新操作</a></li>
+</ul>
