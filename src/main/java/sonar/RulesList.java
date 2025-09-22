@@ -1,6 +1,8 @@
 package sonar;
 
 import org.sonar.plugins.java.api.JavaCheck;
+import sonar.rules.DeleteWithoutConditionCheck;
+import sonar.rules.UpdateWithoutConditionCheck;
 import sonar.rules.LambdaUpdateWrapperEqConditionCheck;
 
 import java.util.ArrayList;
@@ -22,7 +24,8 @@ public class RulesList {
      * These rules are going to target MAIN code only
      */
     public static List<Class<? extends JavaCheck>> getJavaChecks() {
-        return List.of(LambdaUpdateWrapperEqConditionCheck.class);
+        return List.of(LambdaUpdateWrapperEqConditionCheck.class, UpdateWithoutConditionCheck.class,
+                       DeleteWithoutConditionCheck.class);
     }
 
     /**

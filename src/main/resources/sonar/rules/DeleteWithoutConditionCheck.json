@@ -1,0 +1,10 @@
+{
+  "title": "JDBC delete has no where condition",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "tags": [
+    "method",
+    "bugs"
+  ],
+  "defaultSeverity": "Critical"
+}

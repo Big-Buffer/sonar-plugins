@@ -1,0 +1,14 @@
+<p>
+    此规则检查 JDBC 的 update 是否包含 where 条件去更新。
+    如果没有 where 条件，可能会导致全表更新，这是非常危险的操作。
+</p>
+
+<h2>不合规代码示例</h2>
+<pre>
+String sql = "UPDATE LOT_EXT L SET PLOCATION = ?, PLOCATION_TYPE = ? ";
+</pre>
+
+<h2>合规代码示例</h2>
+<pre>
+String sql = "UPDATE LOT_EXT L SET PLOCATION = ?, PLOCATION_TYPE = ?  WHERE L.LOT_RRN = ?";
+</pre>
